@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Notas Fiscais</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<div id="listaDeNotasFiscais">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Empresa</th>
+						<th>Valor Bruto</th>
+						<th>Imposto</th>
+					</tr>
+				</thead>
+				<tr th:each="notafiscal : ${notasfiscais}">
+					<td><span th:text="${notafiscal.id}"></span></td>
+					<td><span th:text="${notafiscal.empresa}"></span></td>
+					<td><span th:text="${notafiscal.valor}"></span></td>
+					<td><span th:text="${notafiscal.imposto}"></span></td>
+				</tr>
+			</table>
+		</div>
+		<hr />
+		<h1>Emitir Nota</h1>
+		<form action="salvar" method="post">
+			<div class="form-group">
+				<label for="nome">Nome Empresa</label> <input type="text"
+					class="form-control" id="nome" name="nome" placeholder="Nome" />
+			</div>
+			<div class="form-group">
+				<label for="valor">Valor da Nota</label> <input type="real"
+					class="form-control" id="email" name="valor" placeholder="Valor" />
+			</div>
+			<div class="form-group">
+				<label for="imposto">Tipo Imposto:</label> <select name="imposto">
+					<option value="icms">ICMS</option>
+					<option value="iss">ISS</option>
+				</select>
+			</div>
+			<button type="submit" class="btn-success">Gerar Nota</button>
+		</form>
+		<h1>Excluir Nota</h1>
+		<form action="delete" method="post">			
+			<div class="form-group">
+				<label for="id">ID da Nota</label> <input type="integer"
+					class="form-control" id="id_nota" name="id" placeholder="ID" />
+			</div>			
+			<button type="submit" class="btn-success">Excluir Nota</button>
+		</form>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
